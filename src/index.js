@@ -80,7 +80,7 @@ const UnderConstructionPage = () => {
         {/* Links */}
         <p>For devs:</p>
         <div style={{ marginTop: "15px" }}>
-          <a style={styles.link} href="https://gerrit.learnnow.ovh">Gerrit Code Review</a>
+          <a style={styles.link} href="https://github.com/iqivi">Github</a>
           <a style={styles.link} href="https://jenkins.learnnow.ovh">Jenkins CI/CD</a>
         </div>
 
