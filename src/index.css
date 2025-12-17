@@ -75,6 +75,8 @@
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
 	--main-green: #169c9a;
+	--filter-bg: #486969;
+	--filter-bg-active: #4abebe;
 }
 
 .dark {

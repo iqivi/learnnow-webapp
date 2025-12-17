@@ -28,7 +28,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				{/* Publiczne strony - z PublicLayout */}
+				{/* public pages */}
 				<Route element={<PublicRoute />}>
 					<Route element={<PublicLayout />}>
 						<Route path='/' element={<PublicMenu />} />
@@ -39,7 +39,7 @@ function App() {
 					</Route>
 				</Route>
 
-				{/* Chronione strony - z AuthLayout */}
+				{/* protected pages */}
 				<Route element={<ProtectedRoute />}>
 					<Route element={<AuthLayout />}>
 						<Route path='/dashboard' element={<Dashboard />} />
@@ -54,7 +54,7 @@ function App() {
 		</BrowserRouter>
 	);
 }
-// Chronione ścieżki - tylko dla zalogowanych
+// protected paths
 function ProtectedRoute() {
 	const { isAuthenticated, isLoading } = useAuth();
 
@@ -69,7 +69,7 @@ function ProtectedRoute() {
 	return isAuthenticated ? <Outlet /> : <Navigate to='/login' replace />;
 }
 
-// Publiczne ścieżki - przekieruj zalogowanych na dashboard
+// public paths
 function PublicRoute() {
 	const { isAuthenticated, isLoading } = useAuth();
 
