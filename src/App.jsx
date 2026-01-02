@@ -9,20 +9,22 @@ import {
 	Navigate,
 	Outlet,
 } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "./context/AuthContext";
 
 // Layouts
-import PublicLayout from "../components/layouts/PublicLayout";
-import AuthLayout from "../components/layouts/AuthLayout";
+import { PublicLayout, AuthLayout } from "@/components/layouts";
 
 // Pages
-import PublicMenu from "../pages/PublicMenu";
-import Dashboard from "../pages/Dashboard";
-import CourseLibrary from "../pages/CourseLibrary";
-import CourseView from "../pages/DashboardCourseCard";
-import Profile from "../pages/Profile";
-import Settings from "../pages/Settings";
-import Support from "../pages/Support";
+import {
+	PublicMenu,
+	Dashboard,
+	CourseLibrary,
+	AdminPanel,
+	AuthorPanel,
+	CourseEditor,
+	CoursePreviewPage,
+	CoursePlayerPage,
+} from "@/pages";
 
 function App() {
 	return (
@@ -44,10 +46,21 @@ function App() {
 					<Route element={<AuthLayout />}>
 						<Route path='/dashboard' element={<Dashboard />} />
 						<Route path='/library' element={<CourseLibrary />} />
-						<Route path='/course/:id' element={<CourseView />} />
-						<Route path='/profile' element={<Profile />} />
-						<Route path='/settings' element={<Settings />} />
-						<Route path='/support' element={<Support />} />
+						<Route path='/admin' element={<AdminPanel />} />
+						<Route path='/author' element={<AuthorPanel />} />
+						<Route
+							path='/author/courses/:courseId/edit'
+							element={<CourseEditor />}
+						/>
+						<Route path='/author/courses/new' element={<CourseEditor />} />
+						<Route
+							path='/author/courses/:courseId/preview'
+							element={<CoursePreviewPage />}
+						/>
+						<Route
+							path='/course/:courseId/watch'
+							element={<CoursePlayerPage />}
+						/>
 					</Route>
 				</Route>
 			</Routes>
