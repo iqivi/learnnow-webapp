@@ -28,7 +28,8 @@ FROM nginx:1.25.3-alpine
 COPY ./nginx/conf/react.conf /etc/nginx/conf.d/default.conf
 
 # Kopiowanie SKOMPILOWANYCH, statycznych plików z fazy 'builder'
-COPY --from=builder /app/build /usr/share/nginx/html
+#COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
