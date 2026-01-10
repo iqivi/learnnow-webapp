@@ -18,6 +18,7 @@ import {
 	XCircle,
 } from "lucide-react";
 import { toast } from "sonner";
+import { QuizDisplay } from "@/components/elements";
 
 export function CoursePlayerPage() {
 	const { courseId } = useParams();
@@ -30,7 +31,7 @@ export function CoursePlayerPage() {
 		role: "author", // 'student' lub 'author'
 		isInstructor: true, // czy jest autorem tego kursu
 	});
- 
+
 	// Mock user - w prawdziwej aplikacji z useAuth()
 	const mockUser = {
 		id: 1,
@@ -80,6 +81,27 @@ export function CoursePlayerPage() {
 				duration: 25,
 				order: 4,
 				completed: false,
+			},
+			{
+				id: 5,
+				order: 5,
+				type: "quiz",
+				title: "Test wiedzy o React",
+				questions: [
+					{
+						id: 0,
+						question: "Co to jest JSX?",
+						options: ["Nie wiem", "Dobre pytanie", "Tak", "Pas"],
+						correctAnswer: 0,
+					},
+					{
+						id: 1,
+						question: "Czy Javascript pochodzi od Javy?",
+						options: ["Tak", "Oczywiście", "Jak najbardziej", "A kto pyta?"],
+						correctAnswer: 0,
+					},
+				],
+				passingScore: 70,
 			},
 		],
 	};
@@ -320,7 +342,7 @@ export function CoursePlayerPage() {
 	const isAuthor = mockUser.email === course.instructorEmail;
 
 	return (
-		<div className='min-h-screen bg-gray-50'>
+		<div className='coursePlayer min-h-screen bg-gray-50'>
 			{/* Header */}
 			<div className='bg-white border-b sticky top-0 z-10'>
 				<div className='container mx-auto px-8 py-4'>
@@ -352,7 +374,14 @@ export function CoursePlayerPage() {
 					<div className='lg:col-span-2 space-y-6'>
 						{/* Player / Content Display */}
 						<Card className='overflow-hidden'>
-							{selectedLesson.type === "video" ? (
+							{selectedLesson.type === "quiz" ? (
+								<Card className='overflow-hidden p-8'>
+									<QuizDisplay
+										lesson={selectedLesson}
+										onComplete={handleMarkAsCompleted}
+									/>
+								</Card>
+							) : selectedLesson.type === "video" ? (
 								<>
 									{/* Video Player */}
 									<div className='aspect-video bg-gray-900 flex items-center justify-center relative'>

@@ -158,8 +158,8 @@ export function Dashboard() {
 	};
 
 	return (
-		<div className='container mx-auto p-8'>
-			<h1 className='text-2xl font-sm pb-5 uppercase'>Kontynuuj naukę</h1>
+		<div className='container mx-auto p-8 text-left'>
+			<h1 className='text-2xl font-sm pb-5 uppercase'>Kontynuuj</h1>
 			<div className='lastCourse'>
 				<CoursePreview />
 			</div>

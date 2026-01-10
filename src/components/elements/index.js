@@ -6,3 +6,4 @@ export { FilterBar } from "./FilterBar";
 export { Footer } from "./Footer";
 export { PublicHeader } from "./PublicHeader";
 export { CourseDetailsModal } from "./CourseDetailsModal";
+export { QuizDisplay } from "./QuizDisplay.jsx";

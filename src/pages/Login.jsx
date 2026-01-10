@@ -1,18 +1,11 @@
 ﻿import React from "react";
-import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context";
 
 import {
 	Field,
-	FieldDescription,
 	FieldGroup,
-	FieldLabel,
 	FieldSet,
-	Item,
-	ItemActions,
-	ItemContent,
-	ItemDescription,
-	ItemTitle,
 	ItemMedia,
 	Input,
 	Button,
@@ -21,56 +14,114 @@ import {
 export function Login() {
 	//? navigation in Menu.jsx
 	const navigate = useNavigate();
+	const { login } = useAuth();
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-	const handleLogin = e => {
+	const handleLogin = async e => {
 		e.preventDefault();
-		toast.success("Zalogowano pomyślnie");
-		// Handle login logic here
+
+		setIsSubmitting(true);
+		const result = await login(email, password);
+		setIsSubmitting(false);
+
+		if (result.success) {
+			navigate("/dashboard");
+		}
 	};
+
+	// const handleLogin = e => {
+	// 	e.preventDefault();
+	// 	// console.log(email);
+	// 	// console.log(password);
+	// 	if (!email || !password) {
+	// 		toast.error("Wypełnij wszystkie pola");
+	// 		return;
+	// 	}
+
+	// 	authService
+	// 		.login(email, password)
+	// 		.then(response => {
+	// 			// Zakładamy, że odpowiedź zawiera token
+	// 			console.log(response.data);
+	// 			const { accessToken } = response.data;
+	// 			localStorage.setItem("accessToken", accessToken);
+	// 			// navigate("/dashboard");
+	// 			toast.success("Zalogowano pomyślnie");
+	// 			// window.location.reload();
+	// 		})
+	// 		.catch(error => {
+	// 			toast.error(
+	// 				"Błąd logowania: " + error.response?.data?.message || error.message
+	// 			);
+	// 		});
+	// };
 
 	return (
 		<div className='w-full flex flex-col items-center'>
 			<ItemMedia variant='image_md'>
 				<img src='src\assets\logo.svg' alt='' />
 			</ItemMedia>
-			<div className='w-2/3 h-150'>
-				<FieldSet>
+			<div className='w-full h-full'>
+				<form onSubmit={handleLogin}>
 					<FieldGroup className='h-4/5 justify-between'>
-						<Field>
-							<Input id='username' type='text' placeholder='login' />
-						</Field>
-						<Field>
-							<Input id='password' type='password' placeholder='hasło' />
-						</Field>
-						<Field>
-							<Button
-								onClick={handleLogin}
-								id='login'
-								variant='outline_primary'
-								type='submit'>
-								Zaloguj
-							</Button>
-						</Field>
-						<Field orientation='horizontal'>
-							<Button variant='outline_icon' size='icon-rect'>
-								<img
-									className='size-12'
-									src='src\assets\google_icon.svg'
-									alt=''
+						<FieldSet>
+							<Field>
+								<Input
+									id='username'
+									type='email'
+									placeholder='login'
+									value={email}
+									onChange={e => setEmail(e.target.value)}
+									disabled={isSubmitting}
+									required
 								/>
-							</Button>
-						</Field>
+							</Field>
+							<Field>
+								<Input
+									id='password'
+									type='password'
+									placeholder='hasło'
+									value={password}
+									onChange={e => setPassword(e.target.value)}
+									disabled={isSubmitting}
+									required
+								/>
+							</Field>
+							<Field>
+								<Button
+									id='login'
+									variant='outline_primary'
+									type='submit'
+									disabled={isSubmitting}>
+									Zaloguj
+								</Button>
+							</Field>
+							<Field orientation='horizontal'>
+								<Button
+									variant='outline_icon'
+									size='icon-rect'
+									disabled={isSubmitting}>
+									<img
+										className='size-12'
+										src='src\assets\google_icon.svg'
+										alt=''
+									/>
+								</Button>
+							</Field>
+						</FieldSet>
 						<Field>
 							<Button
 								id='register'
 								variant='outline'
-								type='submit'
+								type='button'
 								onClick={() => navigate("/register")}>
 								Rejestracja
 							</Button>
 						</Field>
 					</FieldGroup>
-				</FieldSet>
+				</form>
 			</div>
 		</div>
 	);

@@ -50,80 +50,87 @@ export function AuthenticatedHeader() {
 	// const openCourseModal = () => openModal("course");
 
 	return (
-		<div className='header w-6/7 flex flex-row justify-between items-center px-8 py-8 mx-auto'>
-			<img className='logo' src='src\assets\logo_text.svg' alt='' />
-			{/* w-50 flex justify-end items-center gap-4 */}
-			<div className='menu flex items-center justify-end w-1/3 gap-30'>
-				<div>
-					<ButtonGroup>
-						<Button
-							variant={`${
-								location.pathname === "/dashboard"
-									? "outline_border_active"
-									: "outline_border"
-							}`}
-							onClick={goToMyCourses}>
-							moje kursy
-						</Button>
-						<Button
-							variant={`${
-								location.pathname === "/library"
-									? "outline_border_active"
-									: "outline_border"
-							}`}
-							onClick={goToLibrary}>
-							biblioteka
-						</Button>
-					</ButtonGroup>
-				</div>
-				<div className=''>
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<div className='w-full flex items-center justify-center'>
-								<Button variant='outline_primary' size='avatar'>
-									<img
-										className='size-16 rounded-full'
-										src='src\assets\avatar.jfif'
-										alt=''
-									/>
-								</Button>
-							</div>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent className='w-56' align='start'>
-							<DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
-							<DropdownMenuGroup>
-								<DropdownMenuItem onClick={openProfileModal}>
-									Profil
-								</DropdownMenuItem>
-								<DropdownMenuItem onClick={goToAdmin}>
-									Panel administratora
-								</DropdownMenuItem>{" "}
-								<DropdownMenuItem onClick={goToAuthor}>
-									Panel autora
-								</DropdownMenuItem>
-								{/* <DropdownMenuItem onClick={openSettingsModal}>
+		<div className='sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm'>
+			<div className='header w-6/7 flex flex-col lg:flex-row justify-between items-center px-8 py-8 mx-auto'>
+				<img
+					className='logo cursor-pointer'
+					src='src\assets\logo_text.svg'
+					onClick={goToMyCourses}
+					alt=''
+				/>
+				{/* w-50 flex justify-end items-center gap-4 */}
+				<div className='menu flex items-center justify-center lg:justify-end w-1/3 gap-30'>
+					<div>
+						<ButtonGroup>
+							<Button
+								variant={`${
+									location.pathname === "/dashboard"
+										? "outline_border_active"
+										: "outline_border"
+								}`}
+								onClick={goToMyCourses}>
+								moje kursy
+							</Button>
+							<Button
+								variant={`${
+									location.pathname === "/library"
+										? "outline_border_active"
+										: "outline_border"
+								}`}
+								onClick={goToLibrary}>
+								biblioteka
+							</Button>
+						</ButtonGroup>
+					</div>
+					<div className=''>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<div className='w-full flex items-center justify-center'>
+									<Button variant='outline_primary' size='avatar'>
+										<img
+											className='size-16 rounded-full cursor-pointer'
+											src='src\assets\avatar.jfif'
+											alt=''
+										/>
+									</Button>
+								</div>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent className='w-56' align='start'>
+								<DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+								<DropdownMenuGroup>
+									<DropdownMenuItem onClick={openProfileModal}>
+										Profil
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={goToAdmin}>
+										Panel administratora
+									</DropdownMenuItem>{" "}
+									<DropdownMenuItem onClick={goToAuthor}>
+										Panel autora
+									</DropdownMenuItem>
+									{/* <DropdownMenuItem onClick={openSettingsModal}>
 									Ustawienia
 								</DropdownMenuItem> */}
-							</DropdownMenuGroup>
-							<DropdownMenuSeparator />
-							<DropdownMenuGroup>
-								<DropdownMenuItem onClick={() => navigate("/library")}>
-									Biblioteka kursów
+								</DropdownMenuGroup>
+								<DropdownMenuSeparator />
+								<DropdownMenuGroup>
+									<DropdownMenuItem onClick={() => navigate("/library")}>
+										Biblioteka kursów
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => navigate("/dashboard")}>
+										Moje kursy
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+								<DropdownMenuSeparator />
+								<DropdownMenuItem onClick={openSupportModal}>
+									Pomoc
 								</DropdownMenuItem>
-								<DropdownMenuItem onClick={() => navigate("/dashboard")}>
-									Moje kursy
+								<DropdownMenuSeparator />
+								<DropdownMenuItem onClick={handleLogout}>
+									Wyloguj
 								</DropdownMenuItem>
-							</DropdownMenuGroup>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem onClick={openSupportModal}>
-								Pomoc
-							</DropdownMenuItem>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem onClick={handleLogout}>
-								Wyloguj
-							</DropdownMenuItem>
-						</DropdownMenuContent>
-					</DropdownMenu>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</div>
 				</div>
 			</div>
 		</div>

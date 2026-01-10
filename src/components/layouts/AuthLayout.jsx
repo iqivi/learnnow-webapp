@@ -5,6 +5,7 @@
 	useSearchParams,
 } from "react-router-dom";
 import { Toaster } from "@/components/ui";
+import { toast } from "sonner";
 import { AuthenticatedHeader, Footer } from "@/components/elements";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Profile, Settings, Support } from "@/pages";
@@ -93,7 +94,7 @@ export function AuthLayout() {
 
 			{/* Course Details Modal */}
 			<Dialog open={showCourse} onOpenChange={open => !open && closeModal()}>
-				<DialogContent className='max-w-4xl max-h-[90vh] overflow-y-auto'>
+				<DialogContent className='max-w-4xl max-h-[100vh] overflow-y-auto dialog-subtle-scrollbar'>
 					<DialogHeader>
 						<DialogTitle className='sr-only'>Szczegóły kursu</DialogTitle>
 					</DialogHeader>
