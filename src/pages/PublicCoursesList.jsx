@@ -99,7 +99,7 @@ export function PublicCoursesList() {
 	const handleEnroll = courseId => {
 		console.log("Zapisz się do kursu:", courseId);
 		// Przekieruj do logowania/rejestracji
-		navigate(`/register?redirect=/course/${courseId}`);
+		navigate(`/login?redirect=/course/${courseId}`);
 	};
 
 	const handleViewDetails = courseId => {
@@ -118,7 +118,7 @@ export function PublicCoursesList() {
 					</p>
 				</div>
 
-				<div className='example_list flex flex-col gap-6'>
+				<div className='example_list flex flex-col gap-6 '>
 					{demoCoursesData.map(course => (
 						<CourseDemo
 							key={course.id}

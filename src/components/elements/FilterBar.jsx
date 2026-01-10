@@ -11,9 +11,9 @@ import { Button } from "../ui/button.jsx";
 
 export function FilterBar() {
 	return (
-		<div className='filterSortBar flex flex-between w-full pt-4'>
+		<div className='filterSortBar'>
 			<div className='filter flex-1'>
-				<div className='filter-bar-left flex gap-4'>
+				<div className='filter-bar-left grid grid-cols-1 gap-6 lg:gap-60 md:grid-cols-2 lg:grid-cols-7 pt-4'>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant='outline_border' size='md'>
@@ -56,26 +56,6 @@ export function FilterBar() {
 							</DropdownMenuGroup>
 						</DropdownMenuContent>
 					</DropdownMenu>
-				</div>
-			</div>
-			<div className='sort'>
-				<div className='sort-bar-right flex-1 flex justify-end'>
-					<div className='filter-bar-left flex gap-4'>
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Button variant='outline_border' size='md'>
-									Ostatnio używane <i className='fa-solid fa-angle-down'></i>
-								</Button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent className='w-56' align='end'>
-								<DropdownMenuGroup>
-									<DropdownMenuItem>"placholder"</DropdownMenuItem>
-									<DropdownMenuItem>"placholder"</DropdownMenuItem>
-									<DropdownMenuItem>"placholder"</DropdownMenuItem>
-								</DropdownMenuGroup>
-							</DropdownMenuContent>
-						</DropdownMenu>
-					</div>
 				</div>
 			</div>
 		</div>

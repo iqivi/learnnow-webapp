@@ -176,7 +176,7 @@ export function CourseLibrary() {
 	];
 
 	return (
-		<div className='container mx-auto p-8'>
+		<div className='container mx-auto p-8 text-left'>
 			{/* Header */}
 			<div className='mb-8'>
 				<h1 className='text-4xl font-bold text-gray-900 mb-2'>
@@ -189,7 +189,7 @@ export function CourseLibrary() {
 
 			{/* Filtry */}
 			<div className='mb-8'>
-				<h2 className='text-xl font-sm py-5 uppercase'>Filtruj kursy</h2>
+				<h2 className='text-xl font-sm py-5 uppercase'>Filtruj</h2>
 				<FilterBar />
 			</div>
 

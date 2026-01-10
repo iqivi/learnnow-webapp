@@ -2,7 +2,6 @@
 export { AuthorPanel } from "./AuthorPanel.jsx";
 export { CourseLibrary } from "./CourseLibrary.jsx";
 export { Dashboard } from "./Dashboard.jsx";
-export { DashboardCourseCard } from "./DashboardCourseCard.jsx";
 export { Login } from "./Login.jsx";
 export { Profile } from "./Profile.jsx";
 export { PublicCoursesList } from "./PublicCoursesList.jsx";

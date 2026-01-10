@@ -123,7 +123,7 @@ export function CoursePreviewPage() {
 	const textLessons = course.lessons.filter(l => l.type === "text").length;
 
 	return (
-		<div className='min-h-screen bg-gray-50'>
+		<div className='coursePreview min-h-screen bg-gray-50'>
 			{/* Header */}
 			<div className='bg-white border-b sticky top-0 z-10'>
 				<div className='container mx-auto px-8 py-4'>
@@ -138,7 +138,7 @@ export function CoursePreviewPage() {
 						</div>
 						<Button
 							variant='outline_border'
-							size='sm'
+							size='md'
 							// onClick={() => navigate("/author")}
 							onClick={backNavigation}>
 							<ArrowLeft className='h-4 w-4 mr-2' />

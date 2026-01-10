@@ -44,7 +44,7 @@ export function CourseDetailsModal({ course }) {
 	};
 
 	return (
-		<div className='flex flex-col gap-6'>
+		<div className='course-details flex flex-col gap-6'>
 			{/* Thumbnail */}
 			<div className='relative w-full aspect-video overflow-hidden rounded-lg bg-gray-100'>
 				{course.thumbnail ? (

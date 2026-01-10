@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: "http://localhost:8000/api", // Twój backend URL
+	baseURL: "http://localhost:8080/api", // Twój backend URL
 	headers: {
 		"Content-Type": "application/json",
 	},
@@ -11,7 +11,7 @@ const api = axios.create({
 // Automatyczne dodawanie tokena do każdego requesta
 api.interceptors.request.use(
 	config => {
-		const token = localStorage.getItem("token");
+		const token = localStorage.getItem("accessToken");
 		if (token) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
@@ -27,7 +27,7 @@ api.interceptors.response.use(
 	response => response,
 	error => {
 		if (error.response?.status === 401) {
-			localStorage.removeItem("token");
+			localStorage.removeItem("accessToken");
 			window.location.href = "/login";
 		}
 		return Promise.reject(error);

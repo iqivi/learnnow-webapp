@@ -40,3 +40,19 @@
 .read-the-docs {
 	color: #888;
 }
+
+.dialog-subtle-scrollbar {
+	scrollbar-width: thin; /* Firefox */
+	scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+}
+.dialog-subtle-scrollbar::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+.dialog-subtle-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+.dialog-subtle-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.12);
+	border-radius: 9999px;
+}
