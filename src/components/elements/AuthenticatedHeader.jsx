@@ -1,4 +1,4 @@
-﻿import {
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuGroup,
@@ -11,6 +11,8 @@ import { ButtonGroup } from "../ui/button-group";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { Button } from "../ui/button.jsx";
+import logoText from "@/assets/logo_text.svg";
+import avatar from "@/assets/avatar.jfif";
 
 export function AuthenticatedHeader() {
 	const { user, logout } = useAuth();
@@ -54,9 +56,9 @@ export function AuthenticatedHeader() {
 			<div className='header w-6/7 flex flex-col lg:flex-row justify-between items-center px-8 py-8 mx-auto'>
 				<img
 					className='logo cursor-pointer'
-					src='src\assets\logo_text.svg'
+					src={logoText}
 					onClick={goToMyCourses}
-					alt=''
+					alt='Logo'
 				/>
 				{/* w-50 flex justify-end items-center gap-4 */}
 				<div className='menu flex items-center justify-center lg:justify-end w-1/3 gap-30'>
@@ -89,8 +91,8 @@ export function AuthenticatedHeader() {
 									<Button variant='outline_primary' size='avatar'>
 										<img
 											className='size-16 rounded-full cursor-pointer'
-											src='src\assets\avatar.jfif'
-											alt=''
+											src={avatar}
+											alt='Avatar'
 										/>
 									</Button>
 								</div>

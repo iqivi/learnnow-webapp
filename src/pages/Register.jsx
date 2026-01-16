@@ -1,7 +1,8 @@
-﻿import React from "react";
+import React from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context";
+import logo from "@/assets/logo.svg";
 
 import {
 	Field,
@@ -66,7 +67,7 @@ export function Register() {
 	return (
 		<div className='w-full flex flex-col items-center'>
 			<ItemMedia variant='image_md'>
-				<img src='src\assets\logo.svg' alt='' />
+				<img src={logo} alt='Logo' />
 			</ItemMedia>
 			<div className='w-full h-full'>
 				<form onSubmit={handleRegister}>

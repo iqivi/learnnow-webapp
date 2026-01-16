@@ -1,5 +1,6 @@
-﻿import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button.jsx";
+import logoText from "@/assets/logo_text.svg";
 
 export function PublicHeader() {
 	const navigate = useNavigate();
@@ -7,7 +8,7 @@ export function PublicHeader() {
 	return (
 		<div className='sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm'>
 			<div className='header w-5/7 flex flex-row justify-between items-center px-8 py-8 mx-auto'>
-				<img src='src\assets\logo_text.svg' alt='' />
+			<img src={logoText} alt='Logo' />
 				<nav className='w-50 flex justify-between gap-4'>
 					<Button variant='outline' onClick={() => navigate("/login")}>
 						Zaloguj

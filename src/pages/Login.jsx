@@ -1,6 +1,8 @@
-﻿import React from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context";
+import logo from "@/assets/logo.svg";
+import googleIcon from "@/assets/google_icon.svg";
 
 import {
 	Field,
@@ -61,7 +63,7 @@ export function Login() {
 	return (
 		<div className='w-full flex flex-col items-center'>
 			<ItemMedia variant='image_md'>
-				<img src='src\assets\logo.svg' alt='' />
+				<img src={logo} alt='Logo' />
 			</ItemMedia>
 			<div className='w-full h-full'>
 				<form onSubmit={handleLogin}>
@@ -105,8 +107,8 @@ export function Login() {
 									disabled={isSubmitting}>
 									<img
 										className='size-12'
-										src='src\assets\google_icon.svg'
-										alt=''
+										src={googleIcon}
+										alt='Google'
 									/>
 								</Button>
 							</Field>
