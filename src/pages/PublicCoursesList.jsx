@@ -1,6 +1,7 @@
-﻿import React from "react";
+import React from "react";
 import { CourseDemo } from "@/components/elements";
 import { useNavigate } from "react-router-dom";
+import courseImg from "@/assets/course_img.svg";
 
 export function PublicCoursesList() {
 	const navigate = useNavigate();
@@ -12,7 +13,7 @@ export function PublicCoursesList() {
 			title: "Kurs cyberbezpieczeństwa dla każdego",
 			description:
 				"Bez ogródek i lania wody! Poznaj podstawy cyberbezpieczeństwa i naucz się chronić swoje dane.",
-			thumbnail: "src/assets/course_img.svg",
+			thumbnail: courseImg,
 			instructor: "Jan Kowalski",
 			instructorAvatar: "https://i.pravatar.cc/150?img=12",
 			duration: 720,

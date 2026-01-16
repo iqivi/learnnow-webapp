@@ -1,14 +1,15 @@
-﻿import React from "react";
+import React from "react";
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Clock, PlayCircle, Users, Star, BookOpen } from "lucide-react";
+import courseImg from "@/assets/course_img.svg";
 
 export function CourseDemo({
 	id,
 	title = "Kurs cyberbezpieczeństwa dla każdego",
 	description = "Bez ogródek i lania wody! Dla każdego z minimum 50-letnim doświadczeniem w cyberbezpieczeństwie!",
-	thumbnail = "src/assets/course_img.svg",
+	thumbnail = courseImg,
 	instructor = "Jan Kowalski",
 	instructorAvatar,
 	duration = 720,

@@ -1,6 +1,6 @@
-﻿// pages/Menu.jsx
+// pages/Menu.jsx
 import { PublicCoursesList } from "./PublicCoursesList";
-import bannerImg from "../assets/banner.svg";
+import bannerImg from "@/assets/banner.svg";
 
 export function PublicMenu() {
 	return (
