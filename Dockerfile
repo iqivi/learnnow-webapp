@@ -1,23 +1,24 @@
-# FAZA 1: BUILD (Środowisko Node.js do kompilacji)
 # FAZA 1: BUILD (Budowanie)
 FROM node:20-alpine AS builder
+
+# Build argument dla API URL
+ARG VITE_API_URL=http://localhost:8080/api
 
 # Ustawienie katalogu roboczego
 WORKDIR /app
 
 # Kopiowanie zależności
-# ZMIANA: Usuwamy package-lock.json z komendy COPY
 COPY package.json ./ 
 
-# Instalacja zależności (tu zostanie wygenerowany package-lock.json wewnątrz kontenera)
+# Instalacja zależności
 RUN npm install 
 
 # Kopiowanie reszty kodu źródłowego
 COPY . .
 
-# Budowanie aplikacji (wynik w folderze /app/build)
-RUN npm run build
-# ... reszta Dockerfile bez zmian
+# Budowanie aplikacji (wynik w folderze /app/dist)
+# Przekazanie VITE_* zmiennych podczas budowania
+RUN VITE_API_URL=${VITE_API_URL} npm run build
 
 
 # ------------------------------------------------------------------
