@@ -38,9 +38,9 @@ export function CourseDetailsModal({ course }) {
 		// Tu będzie logika zapisu
 	};
 
-	const handleContinue = () => {
-		console.log("Kontynuuj kurs:", course.id);
-		// Tu będzie nawigacja do odtwarzacza
+	const handleContinue = e => {
+		e.stopPropagation(); // Nie wywołuj handleClick
+		navigate(`/course/${course.id}/watch`);
 	};
 
 	return (
@@ -220,8 +220,9 @@ export function CourseDetailsModal({ course }) {
 					{course.isEnrolled ? (
 						<Button
 							onClick={handleContinue}
+							variant='outline_primary'
 							size='lg'
-							className='bg-blue-600 hover:bg-blue-700'>
+							className='w-full sm:w-auto text-xs sm:text-sm'>
 							<PlayCircle className='mr-2 h-5 w-5' />
 							{course.progress > 0 ? "Kontynuuj naukę" : "Rozpocznij kurs"}
 						</Button>

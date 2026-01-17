@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { CourseDemo } from "@/components/elements";
 import { useNavigate } from "react-router-dom";
 import courseImg from "@/assets/course_img.svg";
@@ -111,15 +111,17 @@ export function PublicCoursesList() {
 
 	return (
 		<div className='content'>
-			<div className='flex flex-col gap-6 justify-around p-8 w-6/7 mx-auto'>
+			<div className='flex flex-col gap-6 justify-around px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 w-full max-w-7xl mx-auto'>
 				<div className='example_courses text-left'>
-					<h1 className='text-4xl font-bold mb-2'>Przykładowe kursy</h1>
-					<p className='text-lg text-gray-600'>
+					<h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold mb-2'>
+						Przykładowe kursy
+					</h1>
+					<p className='text-base sm:text-lg text-gray-600'>
 						Odkryj nasze najpopularniejsze kursy i rozpocznij naukę już dziś
 					</p>
 				</div>
 
-				<div className='example_list flex flex-col gap-6 '>
+				<div className='example_list flex flex-col gap-4 sm:gap-6'>
 					{demoCoursesData.map(course => (
 						<CourseDemo
 							key={course.id}
@@ -131,8 +133,8 @@ export function PublicCoursesList() {
 				</div>
 
 				{/* Call to Action */}
-				<div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-8 text-center mt-8'>
-					<h2 className='text-2xl font-bold mb-3'>
+				<div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 sm:p-8 text-center mt-8'>
+					<h2 className='text-xl sm:text-2xl font-bold mb-3'>
 						Gotowy na rozpoczęcie nauki?
 					</h2>
 					<p className='text-gray-600 mb-6'>

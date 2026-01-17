@@ -1,4 +1,4 @@
-import {
+﻿import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuGroup,
@@ -53,16 +53,15 @@ export function AuthenticatedHeader() {
 
 	return (
 		<div className='sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm'>
-			<div className='header w-6/7 flex flex-col lg:flex-row justify-between items-center px-8 py-8 mx-auto'>
+			<div className='header max-w-7xl flex flex-col lg:flex-row justify-between items-center px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 mx-auto gap-4 lg:gap-0 w-full'>
 				<img
-					className='logo cursor-pointer'
+					className='logo cursor-pointer h-8 sm:h-10 w-auto flex-shrink-0'
 					src={logoText}
 					onClick={goToMyCourses}
-					alt='Logo'
+					alt='LearNow'
 				/>
-				{/* w-50 flex justify-end items-center gap-4 */}
-				<div className='menu flex items-center justify-center lg:justify-end w-1/3 gap-30'>
-					<div>
+				<div className='menu flex flex-row items-center justify-center sm:justify-between w-full lg:w-auto gap-3 sm:gap-4 lg:gap-30'>
+					<div className='hidden sm:flex'>
 						<ButtonGroup>
 							<Button
 								variant={`${
@@ -70,7 +69,8 @@ export function AuthenticatedHeader() {
 										? "outline_border_active"
 										: "outline_border"
 								}`}
-								onClick={goToMyCourses}>
+								onClick={goToMyCourses}
+								className='text-xs sm:text-sm'>
 								moje kursy
 							</Button>
 							<Button
@@ -79,20 +79,22 @@ export function AuthenticatedHeader() {
 										? "outline_border_active"
 										: "outline_border"
 								}`}
-								onClick={goToLibrary}>
+								onClick={goToLibrary}
+								className='text-xs sm:text-sm'>
 								biblioteka
 							</Button>
 						</ButtonGroup>
 					</div>
-					<div className=''>
+
+					<div>
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
 								<div className='w-full flex items-center justify-center'>
 									<Button variant='outline_primary' size='avatar'>
 										<img
-											className='size-16 rounded-full cursor-pointer'
+											className='h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 rounded-full cursor-pointer object-cover'
 											src={avatar}
-											alt='Avatar'
+											alt={user?.email}
 										/>
 									</Button>
 								</div>
