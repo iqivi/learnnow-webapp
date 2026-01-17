@@ -72,6 +72,7 @@ export function AuthorPanel() {
 			duration: 540,
 			publishedAt: "2024-06-15",
 			lastUpdated: "2024-12-20",
+			pendingCommunityNotes: 0,
 		},
 		{
 			id: 2,
@@ -87,6 +88,7 @@ export function AuthorPanel() {
 			duration: 320,
 			publishedAt: null,
 			lastUpdated: "2025-01-02",
+			pendingCommunityNotes: 0,
 		},
 		{
 			id: 3,
@@ -102,6 +104,7 @@ export function AuthorPanel() {
 			duration: 600,
 			publishedAt: "2024-03-10",
 			lastUpdated: "2024-11-05",
+			pendingCommunityNotes: 2,
 		},
 		{
 			id: 4,
@@ -117,6 +120,7 @@ export function AuthorPanel() {
 			duration: 85,
 			publishedAt: null,
 			lastUpdated: "2025-01-01",
+			pendingCommunityNotes: 1,
 		},
 		{
 			id: 5,
@@ -132,6 +136,7 @@ export function AuthorPanel() {
 			duration: 420,
 			publishedAt: "2024-09-20",
 			lastUpdated: "2024-12-15",
+			pendingCommunityNotes: 0,
 		},
 	];
 
@@ -256,6 +261,52 @@ export function AuthorPanel() {
 			{/* Courses Tab */}
 			{activeTab === "courses" && (
 				<div className='space-y-6'>
+					{/* Pending Community Notes Alert */}
+					{authorCourses.some(c => c.pendingCommunityNotes > 0) && (
+						<div className='space-y-3'>
+							<h3 className='text-lg font-semibold text-gray-900'>
+								Noteki społeczności oczekujące na zatwierdzenie
+							</h3>
+							<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+								{authorCourses
+									.filter(c => c.pendingCommunityNotes > 0)
+									.map(course => (
+										<Card
+											key={course.id}
+											className='p-5 border-2 border-blue-200 bg-blue-50'>
+											<div className='flex items-start justify-between'>
+												<div className='flex-1'>
+													<div className='flex items-center gap-2 mb-2'>
+														<AlertCircle className='h-5 w-5 text-blue-600' />
+														<h4 className='font-semibold text-gray-900'>
+															{course.title}
+														</h4>
+													</div>
+													<p className='text-sm text-gray-600 mb-3'>
+														<span className='font-semibold text-blue-600'>
+															{course.pendingCommunityNotes}
+														</span>{" "}
+														komentarz
+														{course.pendingCommunityNotes > 1 ? "y" : ""}{" "}
+														oczekuje na zatwierdzenie jako notek społeczności
+													</p>
+													<Button
+														className='bg-blue-600 hover:bg-blue-700'
+														size='sm'
+														onClick={() =>
+															navigate(`/course/${course.id}/watch`)
+														}>
+														<PlayCircle className='h-4 w-4 mr-2' />
+														Przejdź do kursu
+													</Button>
+												</div>
+											</div>
+										</Card>
+									))}
+							</div>
+						</div>
+					)}
+
 					{/* Filter/Sort bar */}
 					<div className='flex items-center justify-between'>
 						<div className='flex gap-2'>
@@ -275,12 +326,12 @@ export function AuthorPanel() {
 								Szkice (1)
 							</Button>
 						</div>
-						<select className='px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'>
+						{/* <select className='px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'>
 							<option>Sortuj: Najnowsze</option>
 							<option>Sortuj: Najstarsze</option>
 							<option>Sortuj: Najwięcej studentów</option>
 							<option>Sortuj: Najwyższa ocena</option>
-						</select>
+						</select> */}
 					</div>
 
 					{/* Courses Grid */}

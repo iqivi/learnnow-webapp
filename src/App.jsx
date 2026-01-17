@@ -10,6 +10,7 @@ import {
 	Outlet,
 } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
+import { CourseProgressProvider } from "./context/CourseProgressContext";
 
 // Layouts
 import { PublicLayout, AuthLayout } from "@/components/layouts";
@@ -28,43 +29,45 @@ import {
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				{/* public pages */}
-				<Route element={<PublicRoute />}>
-					<Route element={<PublicLayout />}>
-						<Route path='/' element={<PublicMenu />} />
-						<Route path='/login' element={<PublicMenu />} />{" "}
-						{/* Modal nad Menu */}
-						<Route path='/register' element={<PublicMenu />} />{" "}
-						{/* Modal nad Menu */}
+		<CourseProgressProvider>
+			<BrowserRouter>
+				<Routes>
+					{/* public pages */}
+					<Route element={<PublicRoute />}>
+						<Route element={<PublicLayout />}>
+							<Route path='/' element={<PublicMenu />} />
+							<Route path='/login' element={<PublicMenu />} />{" "}
+							{/* Modal nad Menu */}
+							<Route path='/register' element={<PublicMenu />} />{" "}
+							{/* Modal nad Menu */}
+						</Route>
 					</Route>
-				</Route>
 
-				{/* protected pages */}
-				<Route element={<ProtectedRoute />}>
-					<Route element={<AuthLayout />}>
-						<Route path='/dashboard' element={<Dashboard />} />
-						<Route path='/library' element={<CourseLibrary />} />
-						<Route path='/admin' element={<AdminPanel />} />
-						<Route path='/author' element={<AuthorPanel />} />
-						<Route
-							path='/author/courses/:courseId/edit'
-							element={<CourseEditor />}
-						/>
-						<Route path='/author/courses/new' element={<CourseEditor />} />
-						<Route
-							path='/author/courses/:courseId/preview'
-							element={<CoursePreviewPage />}
-						/>
-						<Route
-							path='/course/:courseId/watch'
-							element={<CoursePlayerPage />}
-						/>
+					{/* protected pages */}
+					<Route element={<ProtectedRoute />}>
+						<Route element={<AuthLayout />}>
+							<Route path='/dashboard' element={<Dashboard />} />
+							<Route path='/library' element={<CourseLibrary />} />
+							<Route path='/admin' element={<AdminPanel />} />
+							<Route path='/author' element={<AuthorPanel />} />
+							<Route
+								path='/author/courses/:courseId/edit'
+								element={<CourseEditor />}
+							/>
+							<Route path='/author/courses/new' element={<CourseEditor />} />
+							<Route
+								path='/author/courses/:courseId/preview'
+								element={<CoursePreviewPage />}
+							/>
+							<Route
+								path='/course/:courseId/watch'
+								element={<CoursePlayerPage />}
+							/>
+						</Route>
 					</Route>
-				</Route>
-			</Routes>
-		</BrowserRouter>
+				</Routes>
+			</BrowserRouter>
+		</CourseProgressProvider>
 	);
 }
 // protected paths

@@ -42,10 +42,10 @@ function AuthProvider({ children }) {
 			const response = await authService.register(userData);
 			const { success } = response.data;
 			if (success) {
-				const loginResponse = await login(userData.email, userData.password);
-				if (loginResponse.success) {
-					return { success: true };
-				}
+				toast.success(
+					`Wysłano e-mail weryfikacyjny na adres ${userData.email}`
+				);
+				return { success: true };
 			}
 		} catch (error) {
 			toast.error(
