@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { Clock, PlayCircle, Star, TrendingUp } from "lucide-react";
 
 export function CoursePreview({
-	id,
+	id ,
 	title = "Kurs cyberbezpieczeństwa dla każdego",
 	description = "Bez ogródek i lania wody! Dla każdego z minimum 50-letnim doświadczeniem w cyberbezpieczeństwie!",
 	thumbnail = "src/assets/course_img.svg",
@@ -17,7 +17,8 @@ export function CoursePreview({
 	onContinue,
 	className = "",
 }) {
-	const handleContinue = () => {
+	const handleContinue = e => {
+		e.stopPropagation(); // Nie wywołuj handleClick
 		if (onContinue) {
 			onContinue(id);
 		}
@@ -44,7 +45,7 @@ export function CoursePreview({
 							/>
 						) : (
 							<div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100'>
-								<PlayCircle className='h-16 w-16 text-gray-400' />
+								<PlayCircle className='h-12 w-12 sm:h-16 sm:w-16 text-gray-400' />
 							</div>
 						)}
 
@@ -59,38 +60,38 @@ export function CoursePreview({
 						{/* Progress Badge */}
 						<Badge
 							variant='secondary'
-							className='absolute right-3 top-3 bg-black/80 text-white backdrop-blur-sm'>
+							className='absolute right-3 top-3 bg-black/80 text-white backdrop-blur-sm text-xs sm:text-sm'>
 							{progress}% ukończone
 						</Badge>
 					</div>
 				</div>
 
 				{/* Content Section */}
-				<div className='flex flex-1 flex-col justify-between p-6'>
+				<div className='flex flex-1 flex-col justify-between p-4 sm:p-5 lg:p-6'>
 					<div>
 						{/* Title */}
-						<h2 className='mb-3 text-2xl font-bold text-gray-900 line-clamp-2'>
+						<h2 className='mb-2 sm:mb-3 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 line-clamp-2'>
 							{title}
 						</h2>
 
 						{/* Description */}
-						<p className='mb-4 text-base text-gray-600 line-clamp-2'>
+						<p className='mb-3 sm:mb-4 text-xs sm:text-sm lg:text-base text-gray-600 line-clamp-2'>
 							{description}
 						</p>
 
 						{/* Last Watched */}
 						{lastWatched && (
-							<div className='mb-4 flex items-center gap-2 text-sm text-gray-500'>
-								<TrendingUp className='h-4 w-4' />
+							<div className='mb-3 sm:mb-4 flex items-center gap-2 text-xs sm:text-sm text-gray-500'>
+								<TrendingUp className='h-3 w-3 sm:h-4 sm:w-4' />
 								<span>Ostatnio: {lastWatched}</span>
 							</div>
 						)}
 
 						{/* Stats Row */}
-						<div className='mb-4 flex flex-wrap items-center gap-4 text-sm text-gray-600'>
+						<div className='mb-3 sm:mb-4 flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600'>
 							{completedLessons && totalLessons && (
 								<div className='flex items-center gap-1.5'>
-									<PlayCircle className='h-4 w-4' />
+									<PlayCircle className='h-3 w-3 sm:h-4 sm:w-4' />
 									<span className='font-medium'>
 										{completedLessons}/{totalLessons} lekcji
 									</span>
@@ -99,7 +100,7 @@ export function CoursePreview({
 
 							{duration && (
 								<div className='flex items-center gap-1.5'>
-									<Clock className='h-4 w-4' />
+									<Clock className='h-3 w-3 sm:h-4 sm:w-4' />
 									<span>{formatDuration(duration)}</span>
 								</div>
 							)}
@@ -107,8 +108,8 @@ export function CoursePreview({
 					</div>
 
 					{/* Action Button */}
-					<div className='flex items-center justify-between border-t pt-4'>
-						<div className='text-sm text-gray-500'>
+					<div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-2 border-t pt-3 sm:pt-4'>
+						<div className='text-xs sm:text-sm text-gray-500'>
 							Jeszcze{" "}
 							<span className='font-semibold text-gray-900'>
 								{totalLessons - completedLessons} lekcji
@@ -118,8 +119,9 @@ export function CoursePreview({
 						<Button
 							onClick={handleContinue}
 							variant='outline_primary'
-							size='lg'>
-							<PlayCircle className='mr-2 h-5 w-5' />
+							size='lg'
+							className='w-full sm:w-auto text-xs sm:text-sm'>
+							<PlayCircle className='mr-2 h-4 w-4 sm:h-5 sm:w-5' />
 							Kontynuuj
 						</Button>
 					</div>
@@ -128,4 +130,3 @@ export function CoursePreview({
 		</Card>
 	);
 }
-

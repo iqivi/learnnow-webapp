@@ -2,7 +2,7 @@
 import { CourseCard, FilterBar } from "@/components/elements";
 
 export function CourseLibrary() {
-	const [searchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -35,8 +35,8 @@ export function CourseLibrary() {
 			rating: 4.8,
 			reviewsCount: 3241,
 			price: 199,
-			level: "Średniozaawansowany",
-			category: "Programowanie",
+			level: "Średni",
+			category: "Frontend",
 			lessonsCount: 156,
 			isEnrolled: false, // NIE kupiony
 		},
@@ -55,7 +55,7 @@ export function CourseLibrary() {
 			reviewsCount: 5621,
 			price: 0, // DARMOWY
 			level: "Początkujący",
-			category: "Programowanie",
+			category: "Frontend",
 			lessonsCount: 124,
 			isEnrolled: false,
 		},
@@ -74,7 +74,7 @@ export function CourseLibrary() {
 			reviewsCount: 1234,
 			price: 179,
 			level: "Początkujący",
-			category: "Design",
+			category: "Frontend",
 			lessonsCount: 67,
 			isEnrolled: false,
 		},
@@ -92,8 +92,8 @@ export function CourseLibrary() {
 			rating: 4.9,
 			reviewsCount: 987,
 			price: 349,
-			level: "Zaawansowany",
-			category: "Bezpieczeństwo",
+			level: "Ekspert",
+			category: "Cyberbezpieczeństwo",
 			lessonsCount: 142,
 			isEnrolled: false,
 		},
@@ -111,8 +111,8 @@ export function CourseLibrary() {
 			rating: 4.8,
 			reviewsCount: 1543,
 			price: 279,
-			level: "Zaawansowany",
-			category: "DevOps",
+			level: "Ekspert",
+			category: "Frontend",
 			lessonsCount: 112,
 			isEnrolled: false,
 		},
@@ -130,8 +130,8 @@ export function CourseLibrary() {
 			rating: 4.7,
 			reviewsCount: 2341,
 			price: 199,
-			level: "Średniozaawansowany",
-			category: "Bazy Danych",
+			level: "Średni",
+			category: "Bazy danych",
 			lessonsCount: 95,
 			isEnrolled: false,
 		},
@@ -149,8 +149,8 @@ export function CourseLibrary() {
 			rating: 4.9,
 			reviewsCount: 1876,
 			price: 399,
-			level: "Zaawansowany",
-			category: "AI & ML",
+			level: "Ekspert",
+			category: "Frontend",
 			lessonsCount: 156,
 			isEnrolled: false,
 		},
@@ -169,43 +169,79 @@ export function CourseLibrary() {
 			reviewsCount: 1234,
 			price: 149,
 			level: "Początkujący",
-			category: "CMS",
+			category: "Frontend",
 			lessonsCount: 78,
 			isEnrolled: false,
 		},
 	];
 
+	// Funkcja do filtrowania kursów
+	const getFilteredCourses = () => {
+		return courses.filter(course => {
+			const selectedCategory = searchParams.get("category");
+			const selectedLevel = searchParams.get("level");
+
+			// Filtr kategorii
+			if (selectedCategory && course.category !== selectedCategory) {
+				return false;
+			}
+
+			// Filtr trudności
+			if (selectedLevel && course.level !== selectedLevel) {
+				return false;
+			}
+
+			return true;
+		});
+	};
+
+	const filteredCourses = getFilteredCourses();
+
 	return (
-		<div className='container mx-auto p-8 text-left'>
+		<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 text-left'>
 			{/* Header */}
-			<div className='mb-8'>
-				<h1 className='text-4xl font-bold text-gray-900 mb-2'>
+			<div className='mb-6 sm:mb-8 lg:mb-10'>
+				<h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2'>
 					Biblioteka kursów
 				</h1>
-				<p className='text-lg text-gray-600'>
+				<p className='text-base sm:text-lg text-gray-600'>
 					Odkryj ponad {courses.length} kursów i rozwijaj swoje umiejętności
 				</p>
 			</div>
 
 			{/* Filtry */}
-			<div className='mb-8'>
-				<h2 className='text-xl font-sm py-5 uppercase'>Filtruj</h2>
-				<FilterBar />
+			<div className='mb-6 sm:mb-8 lg:mb-10'>
+				<h2 className='text-lg sm:text-xl lg:text-2xl font-semibold py-4 sm:py-5 uppercase'>
+					Filtruj
+				</h2>
+				<FilterBar
+					searchParams={searchParams}
+					setSearchParams={setSearchParams}
+					hideProgressFilter={true}
+				/>
 			</div>
 
 			{/* Grid kursów */}
-			<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
-				{courses.map(course => (
-					<CourseCard
-						key={course.id}
-						{...course}
-						onCardClick={handleCourseClick}
-					/>
-				))}
+			<div className='grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+				{filteredCourses.length > 0 ? (
+					filteredCourses.map(course => (
+						<CourseCard
+							key={course.id}
+							{...course}
+							onCardClick={handleCourseClick}
+						/>
+					))
+				) : (
+					<div className='col-span-full mt-8 text-center'>
+						<p className='text-gray-500 text-lg'>
+							Brak kursów spełniających wybrane kryteria.
+						</p>
+					</div>
+				)}
 			</div>
 
 			{/* Empty state (na wypadek gdy filtry nic nie znajdą) */}
-			{courses.length === 0 && (
+			{filteredCourses.length === 0 && (
 				<div className='flex flex-col items-center justify-center py-16 text-center'>
 					<div className='rounded-full bg-gray-100 p-6 mb-4'>
 						<svg

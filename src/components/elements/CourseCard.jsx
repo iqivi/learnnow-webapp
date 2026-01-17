@@ -2,7 +2,15 @@
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Clock, Users, Star, BookOpen, PlayCircle } from "lucide-react";
+import {
+	Clock,
+	Users,
+	Star,
+	BookOpen,
+	PlayCircle,
+	CheckCircle,
+	Zap,
+} from "lucide-react";
 
 export const CourseCard = ({
 	id,
@@ -61,7 +69,13 @@ export const CourseCard = ({
 
 	return (
 		<Card
-			className={`group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${className}`}
+			className={`group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+				progress === 0
+					? "border-2 border-blue-300"
+					: progress === 100
+					? "border-2 border-green-300"
+					: ""
+			} ${className}`}
 			onClick={handleClick}>
 			{/* Thumbnail Section */}
 			<div className='relative aspect-video w-full overflow-hidden bg-gray-100'>
@@ -73,7 +87,7 @@ export const CourseCard = ({
 					/>
 				) : (
 					<div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100'>
-						<BookOpen className='h-16 w-16 text-gray-400' />
+						<BookOpen className='h-12 w-12 sm:h-16 sm:w-16 text-gray-400' />
 					</div>
 				)}
 
@@ -88,10 +102,23 @@ export const CourseCard = ({
 				{level && (
 					<Badge
 						variant='secondary'
-						className='absolute left-2 top-2 bg-white/90 backdrop-blur-sm'>
+						className='absolute left-2 top-2 bg-white/90 backdrop-blur-sm text-xs sm:text-sm'>
 						{level}
 					</Badge>
 				)}
+
+				{/* Status Badge */}
+				{progress === 0 ? (
+					<Badge className='absolute right-2 top-2 bg-blue-500 text-white text-xs sm:text-sm flex items-center gap-1'>
+						<Zap className='h-3 w-3' />
+						Nowy
+					</Badge>
+				) : progress === 100 ? (
+					<Badge className='absolute right-2 top-2 bg-green-500 text-white text-xs sm:text-sm flex items-center gap-1'>
+						<CheckCircle className='h-3 w-3' />
+						Ukończone
+					</Badge>
+				) : null}
 
 				{/* Progress Bar (for enrolled courses) */}
 				{isEnrolled && progress > 0 && (
@@ -105,24 +132,24 @@ export const CourseCard = ({
 			</div>
 
 			{/* Content Section */}
-			<div className='p-4'>
+			<div className='p-3 sm:p-4 lg:p-5 flex flex-col h-full'>
 				{/* Category Tag */}
 				{category && (
 					<div className='mb-2'>
-						<span className='inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700'>
+						<span className='inline-block rounded-full bg-blue-50 px-2 sm:px-3 py-1 text-xs font-medium text-blue-700'>
 							{category}
 						</span>
 					</div>
 				)}
 
 				{/* Title */}
-				<h3 className='mb-2 line-clamp-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600'>
+				<h3 className='mb-2 line-clamp-2 text-base sm:text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600'>
 					{title}
 				</h3>
 
 				{/* Description */}
 				{description && (
-					<p className='mb-3 line-clamp-2 text-sm text-gray-600'>
+					<p className='mb-3 line-clamp-2 text-xs sm:text-sm text-gray-600'>
 						{description}
 					</p>
 				)}
@@ -134,22 +161,24 @@ export const CourseCard = ({
 							<img
 								src={instructorAvatar}
 								alt={instructor}
-								className='h-6 w-6 rounded-full object-cover'
+								className='h-5 w-5 sm:h-6 sm:w-6 rounded-full object-cover'
 							/>
 						) : (
-							<div className='flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 text-xs font-semibold text-gray-600'>
+							<div className='flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-gray-200 text-xs font-semibold text-gray-600'>
 								{instructor.charAt(0).toUpperCase()}
 							</div>
 						)}
-						<span className='text-sm text-gray-700'>{instructor}</span>
+						<span className='text-xs sm:text-sm text-gray-700'>
+							{instructor}
+						</span>
 					</div>
 				)}
 
 				{/* Stats Row */}
-				<div className='mb-3 flex flex-wrap items-center gap-3 text-sm text-gray-600'>
+				<div className='mb-3 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600'>
 					{rating && (
 						<div className='flex items-center gap-1'>
-							<Star className='h-4 w-4 fill-yellow-400 text-yellow-400' />
+							<Star className='h-3 w-3 sm:h-4 sm:w-4 fill-yellow-400 text-yellow-400' />
 							<span className='font-semibold'>{rating.toFixed(1)}</span>
 							{reviewsCount && (
 								<span className='text-gray-500'>
@@ -161,29 +190,29 @@ export const CourseCard = ({
 
 					{studentsCount && (
 						<div className='flex items-center gap-1'>
-							<Users className='h-4 w-4' />
+							<Users className='h-3 w-3 sm:h-4 sm:w-4' />
 							<span>{formatStudents(studentsCount)}</span>
 						</div>
 					)}
 
 					{lessonsCount && (
 						<div className='flex items-center gap-1'>
-							<PlayCircle className='h-4 w-4' />
+							<PlayCircle className='h-3 w-3 sm:h-4 sm:w-4' />
 							<span>{lessonsCount} lekcji</span>
 						</div>
 					)}
 				</div>
 
 				{/* Footer: Price and Action */}
-				<div className='flex items-center justify-between border-t pt-3'>
+				<div className='flex flex-col sm:flex-row items-end justify-between gap-3 sm:gap-2 border-t pt-3 mt-auto'>
 					<div>
 						{price !== undefined && price !== null ? (
 							price === 0 ? (
-								<span className='text-lg font-bold text-green-600'>
+								<span className='text-base sm:text-lg font-bold text-green-600'>
 									Darmowy
 								</span>
 							) : (
-								<span className='text-lg font-bold text-gray-900'>
+								<span className='text-base sm:text-lg font-bold text-gray-900'>
 									{price} zł
 								</span>
 							)
@@ -193,15 +222,17 @@ export const CourseCard = ({
 					{isEnrolled ? (
 						<Button
 							size='sm'
-							variant='default'
-							className='bg-blue-600 hover:bg-blue-700'
+							variant='outline_primary'
+							className='w-full sm:w-auto  text-xs sm:text-sm'
 							onClick={handleContinue}>
+							<PlayCircle className='mr-2 h-4 w-4 sm:h-5 sm:w-5' />
 							Kontynuuj
 						</Button>
 					) : (
 						<Button
 							size='sm'
 							variant='outline'
+							className='w-full sm:w-auto text-xs sm:text-sm'
 							onClick={handleViewMore}>
 							Zobacz więcej
 						</Button>

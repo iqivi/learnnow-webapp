@@ -1,6 +1,6 @@
 ﻿// hooks/useAuth.js
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { authService } from "../src/api/services";
+import { authService } from "@/api/services";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 

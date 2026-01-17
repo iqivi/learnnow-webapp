@@ -56,7 +56,7 @@ export function CourseDemo({
 			<div className='flex flex-col md:flex-row'>
 				{/* Thumbnail Section */}
 				<div className='relative w-full md:w-2/5 lg:w-1/3 overflow-hidden'>
-					<div className='aspect-video md:aspect-auto md:h-full p-6'>
+					<div className='aspect-video md:aspect-auto md:h-full p-3 sm:p-4 lg:p-6'>
 						{thumbnail ? (
 							<img
 								src={thumbnail}
@@ -65,7 +65,7 @@ export function CourseDemo({
 							/>
 						) : (
 							<div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100'>
-								<BookOpen className='h-16 w-16 text-gray-400' />
+								<BookOpen className='h-12 w-12 sm:h-16 sm:w-16 text-gray-400' />
 							</div>
 						)}
 
@@ -73,7 +73,7 @@ export function CourseDemo({
 						{level && (
 							<Badge
 								variant='secondary'
-								className='absolute left-3 top-3 bg-white/90 backdrop-blur-sm'>
+								className='absolute left-3 top-3 bg-white/90 backdrop-blur-sm text-xs sm:text-sm'>
 								{level}
 							</Badge>
 						)}
@@ -88,52 +88,52 @@ export function CourseDemo({
 				</div>
 
 				{/* Content Section */}
-				<div className='flex flex-1 flex-col justify-between p-6'>
+				<div className='flex flex-1 flex-col justify-between p-4 sm:p-5 lg:p-6'>
 					<div>
 						{/* Category Tag */}
 						{category && (
 							<div className='mb-2'>
-								<span className='inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700'>
+								<span className='inline-block rounded-full bg-blue-50 px-2 sm:px-3 py-1 text-xs font-medium text-blue-700'>
 									{category}
 								</span>
 							</div>
 						)}
 
 						{/* Title */}
-						<h2 className='mb-3 text-2xl font-bold text-gray-900 line-clamp-2 transition-colors group-hover:text-blue-600'>
+						<h2 className='mb-2 sm:mb-3 text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 line-clamp-2 transition-colors group-hover:text-blue-600'>
 							{title}
 						</h2>
 
 						{/* Description */}
-						<p className='mb-4 text-base text-gray-600 line-clamp-2'>
+						<p className='mb-3 sm:mb-4 text-xs sm:text-sm lg:text-base text-gray-600 line-clamp-2'>
 							{description}
 						</p>
 
 						{/* Instructor */}
 						{instructor && (
-							<div className='mb-4 flex items-center gap-2'>
+							<div className='mb-3 sm:mb-4 flex items-center gap-2'>
 								{instructorAvatar ? (
 									<img
 										src={instructorAvatar}
 										alt={instructor}
-										className='h-8 w-8 rounded-full object-cover'
+										className='h-6 w-6 sm:h-8 sm:w-8 rounded-full object-cover'
 									/>
 								) : (
-									<div className='flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm font-semibold text-gray-600'>
+									<div className='flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-gray-200 text-xs sm:text-sm font-semibold text-gray-600'>
 										{instructor.charAt(0).toUpperCase()}
 									</div>
 								)}
-								<span className='text-sm font-medium text-gray-700'>
+								<span className='text-xs sm:text-sm font-medium text-gray-700'>
 									{instructor}
 								</span>
 							</div>
 						)}
 
 						{/* Stats Row */}
-						<div className='mb-4 flex flex-wrap items-center gap-4 text-sm text-gray-600'>
+						<div className='mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600'>
 							{rating && (
 								<div className='flex items-center gap-1'>
-									<Star className='h-4 w-4 fill-yellow-400 text-yellow-400' />
+									<Star className='h-3 w-3 sm:h-4 sm:w-4 fill-yellow-400 text-yellow-400' />
 									<span className='font-semibold'>{rating.toFixed(1)}</span>
 									{reviewsCount && (
 										<span className='text-gray-500'>
@@ -145,14 +145,14 @@ export function CourseDemo({
 
 							{studentsCount && (
 								<div className='flex items-center gap-1.5'>
-									<Users className='h-4 w-4' />
+									<Users className='h-3 w-3 sm:h-4 sm:w-4' />
 									<span>{formatStudents(studentsCount)} studentów</span>
 								</div>
 							)}
 
 							{totalLessons && (
 								<div className='flex items-center gap-1.5'>
-									<PlayCircle className='h-4 w-4' />
+									<PlayCircle className='h-3 w-3 sm:h-4 sm:w-4' />
 									<span>{totalLessons} lekcji</span>
 								</div>
 							)}
@@ -160,15 +160,15 @@ export function CourseDemo({
 					</div>
 
 					{/* Action Footer */}
-					<div className='flex items-center justify-between border-t pt-4'>
+					<div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-2 border-t pt-3 sm:pt-4'>
 						<div>
 							{price !== undefined && price !== null ? (
 								price === 0 ? (
-									<span className='text-2xl font-bold text-green-600'>
+									<span className='text-lg sm:text-xl lg:text-2xl font-bold text-green-600'>
 										Darmowy
 									</span>
 								) : (
-									<span className='text-2xl font-bold text-gray-900'>
+									<span className='text-lg sm:text-xl lg:text-2xl font-bold text-gray-900'>
 										{price} zł
 									</span>
 								)
@@ -176,9 +176,9 @@ export function CourseDemo({
 						</div>
 						<Button
 							onClick={handleEnroll}
-							className='bg-blue-600 hover:bg-blue-700'
+							className='w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm'
 							size='lg'>
-							<PlayCircle className='mr-2 h-5 w-5' />
+							<PlayCircle className='mr-2 h-4 w-4 sm:h-5 sm:w-5' />
 							Zapisz się
 						</Button>
 					</div>
